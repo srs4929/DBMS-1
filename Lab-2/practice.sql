@@ -19,3 +19,16 @@ create table customer
    primary key(customer_id)  
 );
 
+--creating account table
+--One day style
+--If we do not give constraints by default it give constraints then we can not determine error. So we should give constraints to identify error
+create table account
+(
+  account_no char(5),
+  branch_name varchar2(10),
+  balance number(10,2) not null,
+  constraints pk_ac_no primary key(account_no) ,
+  constraints fk_br_name foreign key(branch_name) references branch (branch_name) , -- branch_name is coming from another table. Since it is primary key of another table it is known as foreign key
+  constraints bal check(balance>=0),
+  constraints ch_ac_no check(account_no like'A-%')  
+);
