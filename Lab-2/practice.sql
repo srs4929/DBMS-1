@@ -72,3 +72,11 @@ describe borrower -- it will show table details
 -- LOAN_NO      NOT NULL  CHAR(5)
 
 --Since customer_id and loan_no both are primary key they can not be null .
+
+--Dropping the existing constraint
+alter table account
+drop constraint SYS_C00185864905
+--Adding constraint
+alter table account
+add constraint ch_bal check(balance is not null)
+
