@@ -79,4 +79,52 @@ drop constraint SYS_C00185864905
 --Adding constraint
 alter table account
 add constraint ch_bal check(balance is not null)
+--inserting value in the branch table
+insert into branch
+(branch_name,branch_city,assets)
+values('Gulshan','Dhaka',500000)
+
+--Display all columns and records in branch table
+select * from branch
+--Output
+-- BRANCH_NAME  | BRANCH_CITY | ASSETS
+-- -------------------------------------
+-- Gulshan      | Dhaka       | 500000
+
+-- Employee table creation
+create table employee 
+( 
+    employee_id varchar2(5), 
+    employee_name varchar2(15), 
+    salary number(10,2) not null, 
+    constraints em_id primary key(employee_id), 
+    constraints sal check(salary>=0) 
+);
+
+-- add bloodgroup to table
+
+alter table employee
+add bloodgroup varchar2(3)
+
+--rename the column bloodgroup
+alter table employee
+rename column bloodgroup to bg
+
+--rename table name
+
+alter table employee
+rename  to em
+
+alter table em
+rename to employee
+
+-- adding a unique cell table as number type then convert it into varchar type
+
+alter table employee
+add cell number(11,0) unique
+
+alter table employee
+modify cell varchar(11)
+
+
 
