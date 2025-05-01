@@ -342,6 +342,36 @@ select course_id from section where semester='fall' and year=2017
 union 
 select course_id from section where semester='spring' and year=2018 
  
+ select course_id from section where semester='Fall' and year=2017 
+minus 
+select course_id from section where semester='Spring' and year=2018 
+
+	
+select course_id from section where semester='Fall' and year=2017 
+minus 
+ ( 
+    select course_id from section where semester='Fall' and year=2017 
+  minus 
+  select course_id from section where semester='Spring' and year=2018 
  
+ ) 
+
+select course_id from section where semester='Fall' and year=2017 
+minus 
+ ( 
+    select course_id from section where semester='Fall' and year=2017 
+  minus 
+  select course_id from section where semester='Spring' and year=2018 
+ 
+ ) 
+
+
+select course_id from section where semester='Fall' and year=2017 
+union all 
+select course_id from section where semester='Spring' and year=2018 
+
+
+
+
 
 
