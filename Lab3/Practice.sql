@@ -370,7 +370,78 @@ select course_id from section where semester='Fall' and year=2017
 union all 
 select course_id from section where semester='Spring' and year=2018 
 
+Create table inst_dup as select* from instructor 
+select* from inst_dup 
+ 
+update inst_dup 
+set salary=null 
+where dept_name='Comp. Sci.'
 
+select* from inst_dup 
+
+select name,dept_name,salary 
+from inst_dup 
+
+ select name,dept_name,salary 
+from inst_dup 
+where salary is null 
+
+select name,dept_name,salary 
+from inst_dup 
+where salary is not null
+
+select name,dept_name,salary 
+from inst_dup 
+where salary<null
+
+select min(salary),max(salary),sum(salary),avg(salary) 
+from instructor 
+
+select min(salary),max(salary),sum(salary),avg(salary),count(salary) 
+from instructor 
+ 
+select min(salary),max(salary),sum(salary),avg(salary),sum(salary)/count(salary) 
+from instructor 
+
+select min(salary),max(salary),sum(salary),avg(salary),sum(salary)/count(salary) 
+from instructor 
+group by  dept_name 
+
+select min(salary),max(salary),sum(salary),avg(salary),sum(salary)/count(salary) 
+from instructor 
+group by  dept_name 
+having dept_name in ('History','Biology') 
+
+select dept_name, min(salary),max(salary),sum(salary),avg(salary),sum(salary)/count(salary) 
+from instructor 
+group by  dept_name 
+having dept_name in ('History','Biology') 
+minus 
+select dept_name ,min(salary),max(salary),sum(salary),avg(salary),sum(salary)/count(salary) 
+from instructor 
+where dept_name in ('History','Biology') 
+group by dept_name 
+
+select dept_name, min(salary),max(salary),sum(salary),avg(salary),sum(salary)/count(salary) 
+from instructor 
+group by  dept_name 
+having dept_name in ('History','Biology') 
+intersect 
+select dept_name ,min(salary),max(salary),sum(salary),avg(salary),sum(salary)/count(salary) 
+from instructor 
+where dept_name in ('History','Biology') 
+group by dept_name 
+
+
+select dept_name, min(salary),max(salary),sum(salary),avg(salary),sum(salary)/count(salary) 
+from instructor 
+group by  dept_name 
+having dept_name in ('History','Biology') 
+union 
+select dept_name ,min(salary),max(salary),sum(salary),avg(salary),sum(salary)/count(salary) 
+from instructor 
+where dept_name in ('History','Biology') 
+group by dept_name 
 
 
 
