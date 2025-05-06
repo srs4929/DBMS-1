@@ -191,6 +191,37 @@ select dept_name
 from dept_total, dept_total_avg
 where dept_total.value >= dept_total_avg.value;
 
+-- Scalar subquery
+--Lists all departments along with the number of instructors in each department
+
+--method-1
+select d.dept_name, --takes all the dept name
+(
+    select count(*) -- from the instructor where it matches the dept_name count it
+    from instructor i
+    where d.dept_name=i.dept_name
+) as num_instructor
+from department d
+
+--method-2
+
+SELECT department.dept_name, COUNT(*)
+FROM instructor
+JOIN department ON instructor.dept_name = department.dept_name
+GROUP BY department.dept_name; --gpt
+
+--delete
+
+delete instructor
+where dept_name='Music' -- the instructor whose dept name is MUSIC will be deleted
+
+
+
+
+
+
+
+
 
 
 
