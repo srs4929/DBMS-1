@@ -215,6 +215,51 @@ GROUP BY department.dept_name; --gpt
 delete instructor
 where dept_name='Music' -- the instructor whose dept name is MUSIC will be deleted
 
+--update if we want to modify a partcular column
+
+--increases the salary by 5% for instructors whose current salary is greater than or equal to 70,000.
+--method-1   
+update instructor
+set salary=salary*1.05
+where salary>=70000
+
+--method-2 (delete and insert method)
+
+DELETE FROM instructor -- first deleting all the rows that meet the condition
+WHERE salary >= 70000;
+
+INSERT INTO instructor (ID, name, dept_name, salary)
+SELECT ID, name, dept_name, salary * 1.05
+FROM instructor_backup -- copy table of instructor . Take the values from there and insert into instructor table with updated value
+WHERE salary >= 70000;
+
+--update with case when multiple cases are included
+
+
+update instructor
+set salary=case
+when salary<=700000 then salary*1.07
+when salary<=100000 then salary*1.05
+else salary*1.03
+end
+
+--Scaler with upadate
+--Write an SQL query to update the tot_cred field in the student table.
+--The value should be the sum of credits for all courses a student has taken, excluding those with a grade of 'F' or NULL.
+
+--student: Contains student information (e.g., student ID).
+
+--takes: Contains records of which courses each student has taken, along with their grades.
+
+--course: Contains details about each course, including the number of credits.
+update student S
+set tot_cred=(select sum(course.credits) from takes natural join course where S.id=takes.id and
+    takes.grade<>'F'and takes.grade is not null)
+
+--first take student table to update
+--then from course table sum the total cred where s.id matches with takes.id and takes.grade is not null and f
+--takes and course natural join and make a table
+
 
 
 
