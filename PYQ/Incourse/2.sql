@@ -51,3 +51,14 @@ where id in  (
         where branch_name = 'First bank Corporation'
     )
 );
+
+--c) Find the names of each instructor along with their salary and the average salary in their department using with clause
+with avg_salary(dept,value)
+( select dept_name, avg(salary) from instructor 
+  group by dept_name)  
+select instructor.name,instructor.salary,avg_salary.value
+from instructor,avg_salary
+where instructor.dept_name=avg_salary.dept
+
+
+
