@@ -74,4 +74,15 @@ from department natural join instructor --check the mistake pls
 
 
 
+select t1.id,count(distinct t2.id)
+from teaches t1,takes t2
+where t1.course_id=t2.course_id and 
+      t1.semester=t2.semester and t1.year=t2.year and
+      t1.semester='Fall' and t1.year=2017 
+group by t1.id
+having count(distinct t2.id)>5
+
+
+
+
 
