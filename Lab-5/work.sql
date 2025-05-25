@@ -95,6 +95,13 @@ where id in(
     
 )
 
+update dept_copy
+set budget = case
+            when budget=50000 then 0
+            when budget=120000 then 10000
+            else 5000
+            end
+               
 
 
 
