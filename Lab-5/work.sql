@@ -18,6 +18,8 @@ select dept_name,avg_salary
 from (select dept_name, avg(salary) as avg_salary from instructor group by dept_name)
 where avg_salary>42000
 
+--Question : Find the names of each instructor ,along with their salary and
+    --avg salary in thie department
 
 --process-1
 
@@ -35,7 +37,7 @@ where instructor.dept_name=newtable.dept_name
 select name,salary,avg_salary
 from (select dept_name,avg(salary) as avg_salary from instructor group by dept_name) natural join instructor
 --process-3
-select name,salary,(select avg(salary) as avg_salary from instructor s1 where s1.dept_name=s2.dept_name)
+select name,salary,(select avg(salary) as avg_salary from instructor s1 where s1.dept_name=s2.dept_name) as avg_salary
 from instructor s2
 
 
