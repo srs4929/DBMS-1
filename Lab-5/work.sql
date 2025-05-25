@@ -57,6 +57,21 @@ where salary * 10 >
 (select budget from department
 where department.dept_name = instructor.dept_name)
 
+--process-1
+select dept_name,count(*) as count_instructor
+from instructor
+group by dept_name
+
+--process-2
+select dept_name,
+(select count(*) from instructor 
+    where department.dept_name=instructor.dept_name) as num_instructor
+from department
+--process-3
+select dept_name,count(*) as num_instructor
+from department natural join instructor --check the mistake pls
+
+
 
 
 
