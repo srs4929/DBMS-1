@@ -42,5 +42,21 @@ from instructor s2
 
 
 
+--process-1
+select name
+from instructor natural join department
+where salary*10>budget
+--process-2
+select name
+from instructor,department
+where salary*10>budget and instructor.dept_name=department.dept_name
+--process-3
+select name
+from instructor
+where salary * 10 >
+(select budget from department
+where department.dept_name = instructor.dept_name)
+
+
 
 
