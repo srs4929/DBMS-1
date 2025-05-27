@@ -46,3 +46,17 @@ insert into instructor
 select id,name,dept_name,30000
 from student
 where tot_cred>100
+
+--Find the id and name of each student who has taken at least one 'Comp. Sci.' course
+--method-1
+select distinct s.id,s.name --not sure
+from student s,course c,takes t
+where s.id=t.id
+and c.title='Comp. Sci'
+and c.course_id=t.course_id
+--method 2
+select distinct id,name
+from student 
+where id in(select id from takes,course 
+           where takes.course_id=course.course_id
+           and course.title='Comp. Sci')
