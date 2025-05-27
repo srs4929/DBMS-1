@@ -1,4 +1,4 @@
--- Find the ids and names of all student who were taught by an instructor named Einstein;
+-- a)Find the ids and names of all student who were taught by an instructor named Einstein;
 --make sure there are no duplicates in the result and sort the data by names in reverse lexagraphical word
 
 select distinct s.id,s.name
@@ -11,7 +11,7 @@ where s.id=tk.id
     and tk.sec_id=ts.sec_id
     and i.name='Einstein'
 order by s.name desc
---Find all instructors earning highest salary
+--b)Find all instructors earning highest salary
 --method-1
 select name,salary
 from instructor
@@ -20,4 +20,24 @@ where salary=(select max(salary) from instructor)
 select name,salary
 from instructor 
 where salary>=all(select salary from instructor)
+
+--d)Increase the salary of each instructor in the Comp.Sci department by 10%
+   
+update instructor
+set salary= salary*1.1
+            where dept_name='Comp. Sci.'
+--e) Delete all course that have never been offered
+
+--method1
+delete from course
+where course_id not in (select course_id from section)
+--method 2
+delete from course
+where not exists
+(
+    select 1 from
+    course,section 
+    where course.course_id=section.course_id
+    
+)
    
