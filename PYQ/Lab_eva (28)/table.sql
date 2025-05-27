@@ -139,6 +139,28 @@ delete from residence
 where emp_id=(select emp_id from employee 
               where substr(cell_no,4,3)='125')
 
+--Find the number of employees and total salary for each workplace
+--(department, offices or hall offices) where average salary of such workplace
+--is greater than the minimum total salary among all the offices (use with
+--clause). 
+with minsal(minisalary) as --vhul hoise ig
+(
+    select min(total_salary) as minall
+    from
+    (
+      select sum(salary) as total_salary
+      from employee natural join employee_work,workplace
+      where employee_work.wp_id=workplace.wp_id
+      and workplace.wp_type='Office'
+      group by wp_name
+    )
+)
+select count(emp_id),sum(salary),wp_name
+from employee natural join employee_work,workplace
+where employee_work.wp_id=workplace.wp_id    
+group by wp_name    
+having avg(salary)> (select minisalary from minsal);
+
 
 
 
