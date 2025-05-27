@@ -60,3 +60,22 @@ from student
 where id in(select id from takes,course 
            where takes.course_id=course.course_id
            and course.title='Comp. Sci')
+
+--Find the lowest ,across all departments , of the per department maximum salary
+ --method-1   
+with deptnew(dept_name,mx_salary)
+as(
+    select dept_name,max(salary) as mx_salary
+    from instructor
+    group by dept_name
+)
+select dept_name,mx_salary
+from deptnew
+where mx_salary=(select min(mx_salary) from deptnew)
+--method-2
+select min(mx_salary)
+from(select dept_name,max(salary) as mx_salary
+     from instructor
+     group by dept_name )
+dept_max
+--Find the section that had the maximum enrollment
