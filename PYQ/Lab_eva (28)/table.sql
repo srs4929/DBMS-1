@@ -121,6 +121,23 @@ select child_name,emp_id,dob,edu_levl,first_name as employee_name
 from employee natural join child
 where  child.institution='Dhaka University' 
 
+--) Delete the residence information of the employees who have ‘125’ in the 4
+--th, 5th and 6th digits in their mobile numbers.
+
+INSERT INTO employee 
+VALUES (
+  107, 'Shafiq', 'Hossain', 'Barishal', '01712567890', 
+  'O+', 42000, 'Single', 'Officer', DATE '1987-07-25'
+);
+INSERT INTO residence 
+VALUES (
+  6, 107, 'New Staff Quarter', 'E05'
+);
+
+
+delete from residence
+where emp_id=(select emp_id from employee 
+              where substr(cell_no,4,3)='125')
 
 
 
