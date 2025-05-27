@@ -117,9 +117,12 @@ and length(employee.first_name||employee.last_name)>=25
 
 --Find the information of the children with their parents who study in
 --different department/institutes of the Dhaka university    
-select child_name,emp_id,dob,edu_levl,first_name as employee_name
-from employee natural join child
-where  child.institution='Dhaka University' 
+select*
+from employee,child
+where employee.emp_id=child.emp_id
+and child.institution='Dhaka University'
+
+
 
 --) Delete the residence information of the employees who have ‘125’ in the 4
 --th, 5th and 6th digits in their mobile numbers.
@@ -160,6 +163,26 @@ from employee natural join employee_work,workplace
 where employee_work.wp_id=workplace.wp_id    
 group by wp_name    
 having avg(salary)> (select minisalary from minsal);
+
+--Find the employees who do not have any children
+--method1
+select  e.emp_id,e.first_name,e.last_name
+from employee e
+where emp_id in(select emp_id
+              from employee
+              minus
+              select emp_id
+              from child
+              )
+--method2
+select e.emp_id,e.first_name,e.last_name
+from employee e
+where not exists
+(
+    select 1
+    from child c
+    where c.emp_id=e.emp_id
+)
 
 
 
