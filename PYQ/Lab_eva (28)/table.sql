@@ -103,6 +103,7 @@ INSERT INTO child VALUES ('Imran', 101, DATE '2005-06-10', 'Secondary', 'Univers
 INSERT INTO child VALUES ('Nabila', 103, DATE '2010-04-20', 'Primary', 'University Laboratory School');
 INSERT INTO child VALUES ('Samiha', 105, DATE '2003-12-25', 'Higher Secondary', 'Dhaka College');
 INSERT INTO child VALUES ('Rafi', 105, DATE '2007-01-15', 'Primary', 'Udayan School');
+INSERT INTO child VALUES ('Samaha', 105, DATE '2003-01-15', 'Higher Secondary', 'Dhaka University');
 
 --Find the names of the employees along with division and date of birth who
 --belong to ‘CSE’, ‘EEE’ or ‘FH Hall Office’ offices and have at least 25
@@ -114,6 +115,11 @@ where employee.emp_id=employee_work.emp_id
 and workplace.wp_name in('CSE','EEE','FH Hall Office')
 and length(employee.first_name||employee.last_name)>=25
 
+--Find the information of the children with their parents who study in
+--different department/institutes of the Dhaka university    
+select child_name,emp_id,dob,edu_levl,first_name as employee_name
+from employee natural join child
+where  child.institution='Dhaka University' 
 
 
 
