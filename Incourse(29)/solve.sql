@@ -11,4 +11,13 @@ where s.id=tk.id
     and tk.sec_id=ts.sec_id
     and i.name='Einstein'
 order by s.name desc
+--Find all instructors earning highest salary
+--method-1
+select name,salary
+from instructor
+where salary=(select max(salary) from instructor)
+--method-2
+select name,salary
+from instructor 
+where salary>=all(select salary from instructor)
    
