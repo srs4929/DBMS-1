@@ -73,6 +73,7 @@ INSERT INTO employee VALUES (102, 'Anika', 'Sultana', 'Chittagong', '01623456789
 INSERT INTO employee VALUES (103, 'Sabbir', 'Ahmed', 'Rajshahi', '01534567890', 'O+', 30000, 'Married', '3rd_class', DATE '1990-03-12');
 INSERT INTO employee VALUES (104, 'Fatema', 'Begum', 'Khulna', '01998765432', 'AB+', 25000, 'Divorced', '4th_class', DATE '1988-09-05');
 INSERT INTO employee VALUES (105, 'Tariq', 'Hasan', 'Sylhet', '01787654321', 'A-', 75000, 'Married', 'Teacher', DATE '1980-01-10');
+INSERT INTO employee VALUES (105, 'Tariq', 'Hasan', 'Sylhet', '01787654321', 'A-', 75000, 'Married', 'Teacher', DATE '1980-01-10');
 
 INSERT INTO workplace VALUES (1, 'CSE', 'Department', 'Curzon Hall');
 INSERT INTO workplace VALUES (2, 'EEE', 'Department', 'Science Annex');
@@ -85,6 +86,8 @@ INSERT INTO employee_work VALUES (102, 2, DATE '2015-06-01', 4.50, 'Officer');
 INSERT INTO employee_work VALUES (103, 3, DATE '2017-03-15', 3.00, 'Technician');
 INSERT INTO employee_work VALUES (104, 3, DATE '2018-09-01', 2.50, 'Support Staff');
 INSERT INTO employee_work VALUES (105, 4, DATE '2012-02-20', 4.00, 'Lecturer');
+INSERT INTO employee_work (emp_id, wp_id, join_date, increment_rate, designation)
+VALUES (106, 10, TO_DATE('2010-07-01', 'YYYY-MM-DD'), 5.00, 'Professor');
 
 INSERT INTO car VALUES (1, 101, 'Axio', 'Toyota', '2015');
 INSERT INTO car VALUES (2, 102, 'Corolla', 'Toyota', '2018');
@@ -100,6 +103,17 @@ INSERT INTO child VALUES ('Imran', 101, DATE '2005-06-10', 'Secondary', 'Univers
 INSERT INTO child VALUES ('Nabila', 103, DATE '2010-04-20', 'Primary', 'University Laboratory School');
 INSERT INTO child VALUES ('Samiha', 105, DATE '2003-12-25', 'Higher Secondary', 'Dhaka College');
 INSERT INTO child VALUES ('Rafi', 105, DATE '2007-01-15', 'Primary', 'Udayan School');
+
+--Find the names of the employees along with division and date of birth who
+--belong to ‘CSE’, ‘EEE’ or ‘FH Hall Office’ offices and have at least 25
+--characters as their names
+
+select first_name,last_name,division,dob
+from employee,(employee_work natural join workplace)
+where employee.emp_id=employee_work.emp_id
+and workplace.wp_name in('CSE','EEE','FH Hall Office')
+and length(employee.first_name||employee.last_name)>=25
+
 
 
 
