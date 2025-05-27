@@ -41,3 +41,8 @@ where not exists
     
 )
    
+-- Insert every student whose tot_cred attribute is greater than 100 as an instructor in the same dept with a salary of 30000
+insert into instructor
+select id,name,dept_name,30000
+from student
+where tot_cred>100
