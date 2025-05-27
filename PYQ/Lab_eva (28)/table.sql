@@ -67,5 +67,41 @@ create table child(
     foreign key (emp_id) references employee(emp_id)
 )
 
+--value insertion 
+INSERT INTO employee VALUES (101, 'Rezaul', 'Karim', 'Dhaka', '01712345678', 'A+', 60000, 'Married', 'Teacher', DATE '1975-06-15');
+INSERT INTO employee VALUES (102, 'Anika', 'Sultana', 'Chittagong', '01623456789', 'B+', 48000, 'Single', 'Officer', DATE '1985-11-20');
+INSERT INTO employee VALUES (103, 'Sabbir', 'Ahmed', 'Rajshahi', '01534567890', 'O+', 30000, 'Married', '3rd_class', DATE '1990-03-12');
+INSERT INTO employee VALUES (104, 'Fatema', 'Begum', 'Khulna', '01998765432', 'AB+', 25000, 'Divorced', '4th_class', DATE '1988-09-05');
+INSERT INTO employee VALUES (105, 'Tariq', 'Hasan', 'Sylhet', '01787654321', 'A-', 75000, 'Married', 'Teacher', DATE '1980-01-10');
+
+INSERT INTO workplace VALUES (1, 'CSE', 'Department', 'Curzon Hall');
+INSERT INTO workplace VALUES (2, 'EEE', 'Department', 'Science Annex');
+INSERT INTO workplace VALUES (3, 'FH Hall Office', 'Hall Office', 'Fazlul Huq Hall');
+INSERT INTO workplace VALUES (4, 'Registrar Office', 'Office', 'Admin Building');
+INSERT INTO workplace VALUES (5, 'Proctor Office', 'Office', 'Main Campus');
+
+INSERT INTO employee_work VALUES (101, 1, DATE '2010-01-01', 5.00, 'Professor');
+INSERT INTO employee_work VALUES (102, 2, DATE '2015-06-01', 4.50, 'Officer');
+INSERT INTO employee_work VALUES (103, 3, DATE '2017-03-15', 3.00, 'Technician');
+INSERT INTO employee_work VALUES (104, 3, DATE '2018-09-01', 2.50, 'Support Staff');
+INSERT INTO employee_work VALUES (105, 4, DATE '2012-02-20', 4.00, 'Lecturer');
+
+INSERT INTO car VALUES (1, 101, 'Axio', 'Toyota', '2015');
+INSERT INTO car VALUES (2, 102, 'Corolla', 'Toyota', '2018');
+INSERT INTO car VALUES (3, 105, 'Premio', 'Toyota', '2017');
+
+INSERT INTO residence VALUES (1, 101, 'Shaheed Abul Khair Bhaban', 'B12');
+INSERT INTO residence VALUES (2, 102, 'Shaheed Abul Khair Bhaban', 'A05');
+INSERT INTO residence VALUES (3, 103, 'TSC Quarter', 'C07');
+INSERT INTO residence VALUES (4, 104, 'Shaheed Sergeant Zahurul Haq Hall', 'G21');
+INSERT INTO residence VALUES (5, 105, 'Shaheed Abul Khair Bhaban', 'D15');
+
+INSERT INTO child VALUES ('Imran', 101, DATE '2005-06-10', 'Secondary', 'University Laboratory School');
+INSERT INTO child VALUES ('Nabila', 103, DATE '2010-04-20', 'Primary', 'University Laboratory School');
+INSERT INTO child VALUES ('Samiha', 105, DATE '2003-12-25', 'Higher Secondary', 'Dhaka College');
+INSERT INTO child VALUES ('Rafi', 105, DATE '2007-01-15', 'Primary', 'Udayan School');
+
+
+
 
 
