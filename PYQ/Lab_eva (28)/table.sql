@@ -8,6 +8,7 @@ create table employee(
     salary number(10,0),
     marital_status varchar(9),
     employee_type varchar(10),
+    dob date,
     primary key(emp_id),
     constraint salary_chk check (salary>=8250 and salary<=78000),
     constraint division_chk check(division in('Dhaka','Chittagong', 'Rangpur', 'Barishal', 'Khulna', 'Sylhet', 'Rajshahi')),
